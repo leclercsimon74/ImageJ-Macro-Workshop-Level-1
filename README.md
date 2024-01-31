@@ -143,11 +143,11 @@ function listFile(dir){
 }
 ```
 This works as follows:
-- grab the list of item
-- iterate through each item
-- if the item ends with a slash, it is a folder
-  - call again the function, but this time on the sub-folder (dir+list[i])
-- if the item ends with a tif format, process the image as in the previous macro
+- Grab the list of item
+- Iterate through each item
+- **If** the item ends with a slash, it is a folder
+  - Call again the function, but this time on the sub-folder (dir+list[i])
+- **If** the item ends with a tif format, process the image as in the previous macro
 
 Make the code for the function processImage(path), with the content being identical to Macro 2.
 For this macro to start, we need a directory, with getDirectory, then initialize the first iteration of listFiles with listFiles(dir).
@@ -160,18 +160,18 @@ In the [Built-in Macro Functions](https://imagej.net/ij/developer/macro/function
 Another nice option is to create a dialog window. This is easily done in ImageJ with the Dialog class, which allows to creation of and reading of the dialog options and creates some choices/branching based on the user input.
 
 Macro 4.Square_selection.ijm demonstrates both options, better to try on the Macro 4 folder (very simple nuclear images):
-- it first asks where to save the images, then the directory to process
-- it opens only the images that are tif. No recursive option here.
-- it opens the image, grabs the image name, renames it, and prints where the image will be saved and under which name
-- It then creates a dialog option, with the option to pass/skip the image as a checkbox
+- Asks where to save the images, then the directory to process
+- Opens only the images that are tif. No recursive option here.
+- Grabs the image name, renames it, and prints where the image will be saved and under which name
+- Creates a dialog option, with the option to pass/skip the image as a checkbox
   -The user needs to make a rectangle selection around the cell of interest
-- if it is not skipped and the selection is a rectangle:
-  - grab the center of the rectangle position, and make it square
+- **If** it is not skipped and the selection is a rectangle:
+  - Grab the center of the rectangle position, and make it square
   - Duplicate the square
   - Resize it to 100x100 pixels
   - Save as tiff
   - Close all images
-- otherwise, close the image
+- **Else**, close the image
 
 > [!TIP]
 > Dialog is very powerful but tends to get very ugly quickly when there are too many options.
