@@ -1,23 +1,26 @@
 # ImageJ-Macro-Workshop-Level-1
 ImageJ Macro Workshop Level 1
 
-The most important resources:
+Important resources:
 - ImageJ website for plugins: https://imagej.net/ij/
 - Advice for macro writing: https://imagej.net/ij/developer/macro/macros.html
 - **Built-in Macro function**: https://imagej.net/ij/developer/macro/functions.html
 
-You can download the test microscopic images, from the following link:
+You can download the test microscopic :microscope: images, from the following link:
 
 The macro can also be found in the same folder. It will be permanently available even after the workshop.
 
 # Objectives of the workshop
 Automatise as much as possible simple tasks, such as running a plugin on all images in a folder, waiting for the user input, chained image manipulation, and conditional image manipulation….
 
-Condition to come to the workshop
-- Laptop!
+# Condition to come to the workshop
+- Laptop :thinking:!
 - Have ImageJ or [Fiji](https://fiji.sc/) version 1.53t or later installed on your computer (Help=>Update)
 - Read the [ImageJ macro language](https://imagej.net/ij/developer/macro/macros.html)
 - Have an interest in automatizing your image analysis pipeline
+
+> [!NOTE]
+> We will detail the basic bloc of programming, so it is not needed to have in-depth knowledge!
 
 # Macro 1: Manual crop
 You have a lot of 3d images with one cell in the middle and need to clear out any other partial cell that happens to be in the same field of view.
@@ -34,12 +37,12 @@ Now, except for the **bold** line that requires human intervention, everything e
 
 First is to open a new macro: ‘Plugins’ => ’New’ => ‘Macro’. Be sure to check that the language is ImageJ Macro in the tab ‘Language’. Pushing the ‘Run’ button, located at the bottom, will execute the Macro.
 
-Nearly all functions in ImageJ can be found with the ‘record’, found in ‘Plugins’ => ‘Macros’ => ‘Record’, ImageJ will start to record nearly all actions that you are doing, like applying a different LUT to an image. The easiest way is then to open an image and do what we want the Macro to do (image 1). The double slash ‘//’ indicates a comment, very useful for indicating what a piece of code is doing.
+Nearly all functions in ImageJ can be found with the ‘record’, found in ‘Plugins’ => ‘Macros’ => ‘Record’.
+ImageJ will start to record nearly all actions that you are doing, like applying a different LUT to an image. The easiest way is then to open an image and do what we want the Macro to do (image 1). The double slash ‘//’ indicates a comment, very useful for indicating what a piece of code is doing.
 
+![Image 1. Macro recorder](Image1.png)
 
-Image 1. Macro recorder
-
-We can see a couple of trouble here.
+We can see :eye: a couple of trouble here.
 The first one is this makePolygon. We want that to be manually done by the user.
 Then we need the program to know the amount of images, their location, their names…
 Harcoding, a.k.a. entering in a list/array all this information by yourself is not a solution. But ImageJ has you covered, with the two most important functions needed:
@@ -68,12 +71,14 @@ run("Grays");
 run("Save");
 run("Close");
 ```
+> [!WARNING]
+> You may run into trouble though. What if the user did not select anything? The Macro will run into an error since it cannot ‘Clear Outside’ without an active selection.
 
-You may run into trouble though. What if the user did not select anything? The Macro will run into an error since it cannot ‘Clear Outside’ without an active selection. There are two ways to solve this trouble, if nothing is selected:
+There are two ways to solve this trouble, if nothing is selected:
 - Make a select all
 - Skip the ‘Clear Outside’
 
-The keyword here is **IF**, allowing the macro to check a condition. If the condition is true, the macro will execute the code in the bracket {}. Otherwise, it does not execute this code and instead will execute the code in the else {} bracket if provided.
+The keyword :key: here is **IF**, allowing the macro to check a condition. If the condition is true, the macro will execute the code in the bracket {}. Otherwise, it does not execute this code and instead will execute the code in the else {} bracket if provided.
 So we need to detect if there is an active selection, and again, ImageJ provides a function for that, called selectionType, that returns a numerical value based on the type of selection (square, round, polygon…). When there is no selection, it will return the value -1. There are multiple way to test an element:
 - == is equal
 - != is different, or unequal
@@ -86,12 +91,14 @@ if(selectionType != -1){//do something}
 ```
 We have now all the pieces to write our first simple macro!
 You can find some test images to try this macro, just be sure to duplicate them since the macro will save on top of the existing images. The Live cell mitochondria are perfect to demonstrate this macro.
-The macro answer is called: 1. HiLo_crop.ijm
+> [!TIP]
+> The macro answer is called: 1. HiLo_crop.ijm
+
 
 # Macro 2. Create a max projection composite
 Using a similar approach, make a montage image of the IF images in the folder by Macro:
-- Set channel 1 to Blue and auto-adjust the brightness and contrast
-- Do the same thing for all other channels, with the LUT in order of yellow, gray, green, and red
+- Set channel 1 to Blue :large_blue_circle: and auto-adjust the brightness and contrast
+- Do the same thing for all other channels, with the LUT in order of yellow :yellow_circle:, gray :white_circle:, green :green_circle:, and red :red_circle:
 - Make a z-maximum projection
 - Make a composite image without the gray (visible channel)
 - Add scale bar to the image (10 um)
@@ -99,31 +106,43 @@ Using a similar approach, make a montage image of the IF images in the folder by
 - Make the montage
 - Save the montage as .png with the same name as the original image, the same location
 
-See an example image as image2.
+See :eye: an example image below.
 
+![Image 2. Example image created by Macro 2.](Image2.png)
 
-Image 2. Example image created by Macro 2.
+The challenge is that the macro recorder does not record your direct action, such as changing the channel or z plane. There is some that it does record if you pass through the menu, but one way is to search (Ctrl+F is your friend) in [Built-in Macro Functions](https://imagej.net/ij/developer/macro/functions.html).
+> [!TIP]
+> Changing channel is in Stack.
 
-The challenge is that the macro recorder does not record your direct action, such as changing the channel or z plane. There is some that it does record if you pass through the menu, but one way is to search (Ctrl+F is your friend) in [Built-in Macro Functions](https://imagej.net/ij/developer/macro/functions.html). Hint, changing channel is in Stack.
 Fusing images is at best annoying. The keyword here is concatenated, and it is located in ‘Stack’=>’Tools’.
-Remember: First do it manually with the recorder on, then modify Macro 1 accordingly! Test the Macro on the IF mitochondria for Macro 2.
+> [!IMPORTANT]
+> First do it manually with the recorder on, then modify Macro 1 accordingly! Test the Macro on the IF mitochondria for Macro 2.
 
-If you are losing patience, the macro 2.LUT_correction_5.ijm will contain all the answers.
+> [!TIP]
+> The macro answer is called: 2.LUT_correction_5.ijm 
 
 # Macro 3. Let’s make it recursive!
-Here, we will dive a little deeper into the programming world.
+Here, we will dive :diving_mask: a little deeper into the programming world.
 But before, what does it mean, recursive? Here, we want to run the macro on all images in a folder, even if there are images in a folder of this folder. Right now, macro 2 will process only the first 2 images but will throw an error when trying to open the folder ‘Condition 1’ (for IF mitochondria for Macro 3). In addition, it will also open all files that it can open, even the ‘.png’ that it just creates, leading to some undesirable bugs.
 To do such a feast, we need functions. A function is a piece of code that you can call again and again, like in the for loop. When we call getFileList, we call a function from ImageJ. Here, we need to make at least two functions:
 - a function that will list the files in a directory
 - a function that will process the image as we want
 
-To create a function, we just need a keyword: ‘function functionname(functionparameters){}’.
+To create a function, we just need a keyword :key:: ‘function functionname(functionparameters){}’.
 The first function is a loop, like in macros 1 and 2. However, we detect if the item that we are trying to open is an image or another directory. If the item is of extension ‘.tif’, we know that it is an image that we can process, if the item finishes with a slash ‘/’, we know this is a folder. In the first case, we can just call the function to open and process the image. In the second case, we can call again the first function, to list all files in the new folder. And continue until there is no folder or images to process.
 
-It is a difficult process to grasp, so here is the code for the first function (image3)
-
-Image 3. listFile function code.
-
+It is a difficult process to grasp, so here is the code for the first function:
+```
+function listFile(dir){
+  list = getFileList(dir);
+  for (i=0; i<list.length; i++){
+    if (endsWith(list[i], "/")) //folder
+      listFiles(""+dir+list[i]);
+    if (endsWith(list[i], ".tif")) //tif image
+      processImage(dir+list[i]);
+  }
+}
+```
 This works as follows:
 - grab the list of item
 - iterate through each item
@@ -137,9 +156,9 @@ For this macro to start, we need a directory, with getDirectory, then initialize
 # Macro 4. Saving elsewhere and dialog option
 So far, we always saved the image in the same folder as the original image. If this is not the desired outcome, it is possible to create a new folder or saving elsewhere completely. It is also sometimes needed to pretreat some images and not others. As such having a dialog option is critical.
 
-The simplest solution to save elsewhere is to ask the user for a result directory with getDirectory(). It is then possible to clone the arborescence with a recursive macro (out of scope for level 1, though).
+The simplest solution to save elsewhere is to ask the user for a result directory with getDirectory(). It is then possible to clone the arborescence :deciduous_tree: with a recursive macro (out of scope for level 1, though).
 In the [Built-in Macro Functions](https://imagej.net/ij/developer/macro/functions.html), there is a File function that allows manipulation of folders, such as creation.
-Another nice option is to create a dialog window. This is easily done in ImageJ with the Dialog class, which allows to creation of and reading the dialog options and creates some choices/branching based on the user input.
+Another nice option is to create a dialog window. This is easily done in ImageJ with the Dialog class, which allows to creation of and reading of the dialog options and creates some choices/branching based on the user input.
 
 Macro 4.Square_selection.ijm demonstrates both options, better to try on the Macro 4 folder (very simple nuclear images):
 - it first asks where to save the images, then the directory to process
@@ -155,8 +174,9 @@ Macro 4.Square_selection.ijm demonstrates both options, better to try on the Mac
   - Close all images
 - otherwise, close the image
 
-A few more details:
-Dialog is very powerful but tends to get very ugly quickly when there are too many options.
+> [!TIP]
+> Dialog is very powerful but tends to get very ugly quickly when there are too many options.
+
 Text, also named string, can be manipulated very easily. Concatanate them with ‘+’.
 Similarly, ImageJ uses a lot of text as function parameters. The most used one is the run() function, which takes two parameters. The first one is the function itself, such as “Duplicate…”, the second parameter is some text containing parameters needed for this function. It is possible to modify these parameters with string manipulation, like in the example:
 ```
