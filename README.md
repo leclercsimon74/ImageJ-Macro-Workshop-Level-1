@@ -1,4 +1,3 @@
-# ImageJ-Macro-Workshop-Level-1
 # ImageJ Macro Workshop Level 1
 
 Important resources:
