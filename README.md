@@ -1,5 +1,5 @@
 # ImageJ-Macro-Workshop-Level-1
-ImageJ Macro Workshop Level 1
+# ImageJ Macro Workshop Level 1
 
 Important resources:
 - ImageJ website for plugins: https://imagej.net/ij/
