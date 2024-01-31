@@ -51,7 +51,7 @@ You can find more information on them at [Built-in Macro Functions](https://imag
 The first create a dialog window for the user to select the directory, call ‘dir’ here. This is in reality, a string/text.
 The second will list all files in the directory that have been selected and will contain a list of file names. A list, or array in ImageJ, is a specific data structure that has an extra function on it.
 After that, we need to create a loop to pass through all the items in the list. A for loop is perfect in this scenario:
-```
+```Java
 for (i=0; i<list.length; i++){
 //code here
 }
@@ -64,7 +64,7 @@ We then want to open the image. If the image is in a native imageJ format (png, 
 Finally, back to the first trouble, the creation of the polygon. Since we want the user to select it, we need to pause the macro. ImageJ provides a very useful set of functions for this, the easiest to use being ‘WaitForUser()’, which creates a small window. When the user clicks on the OK button, the macro will proceed to the next piece of code. If the user clicks on the x button, the macro will abort.
 
 Then the macro can proceed forward like in the macro record part:
-```
+```Java
 run("Clear Outside", "stack");
 run("Grays");
 run("Save");
@@ -85,7 +85,7 @@ So we need to detect if there is an active selection, and again, ImageJ provides
 - &, ^, | are more advanced and, or, nor, generally used to check multiple conditions at the same time
 
 So we can do:
-```
+```Java
 if(selectionType != -1){//do something}
 ```
 We have now all the pieces to write our first simple macro!
@@ -131,7 +131,7 @@ To create a function, we just need a keyword :key:: ‘function functionname(fun
 The first function is a loop, like in macros 1 and 2. However, we detect if the item that we are trying to open is an image or another directory. If the item is of extension ‘.tif’, we know that it is an image that we can process, if the item finishes with a slash ‘/’, we know this is a folder. In the first case, we can just call the function to open and process the image. In the second case, we can call again the first function, to list all files in the new folder. And continue until there is no folder or images to process.
 
 It is a difficult process to grasp, so here is the code for the first function:
-```
+```Java
 function listFile(dir){
   list = getFileList(dir);
   for (i=0; i<list.length; i++){
