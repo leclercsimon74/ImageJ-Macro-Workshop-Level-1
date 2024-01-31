@@ -96,7 +96,7 @@ You can find some test images to try this macro, just be sure to duplicate them 
 
 # Macro 2. Create a max projection composite
 Using a similar approach, make a montage image of the IF images in the folder by Macro:
-- Set channel 1 to Blue :large_blue_circle: and auto-adjust the brightness and contrast
+- Set channel 1 to Blue :large_blue_circle: and auto-adjust the brightness :high_brightness: and contrast
 - Do the same thing for all other channels, with the LUT in order of yellow :yellow_circle:, gray :white_circle:, green :green_circle:, and red :red_circle:
 - Make a z-maximum projection
 - Make a composite image without the gray (visible channel)
