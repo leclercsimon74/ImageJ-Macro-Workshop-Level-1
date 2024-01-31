@@ -164,7 +164,7 @@ Macro 4.Square_selection.ijm demonstrates both options, better to try on the Mac
 - Opens only the images that are tif. No recursive option here.
 - Grabs the image name, renames it, and prints where the image will be saved and under which name
 - Creates a dialog option, with the option to pass/skip the image as a checkbox
-  -The user needs to make a rectangle selection around the cell of interest
+  - The user needs to make a rectangle selection around the cell of interest
 - **If** it is not skipped and the selection is a rectangle:
   - Grab the center of the rectangle position, and make it square
   - Duplicate the square
