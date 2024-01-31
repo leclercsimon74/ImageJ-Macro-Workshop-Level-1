@@ -6,7 +6,7 @@ Important resources:
 - Advice for macro writing: https://imagej.net/ij/developer/macro/macros.html
 - **Built-in Macro function**: https://imagej.net/ij/developer/macro/functions.html
 
-You can download the test microscopic :microscope: images, from the following link:
+You can download the test microscopic :microscope: images, from the following link: https://github.com/leclercsimon74/ImageJ-Macro-Workshop-Level-1/tree/main
 
 The macro can also be found in the same folder. It will be permanently available even after the workshop.
 
