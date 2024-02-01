@@ -16,6 +16,7 @@ Automatise as much as possible simple tasks, such as running a plugin on all ima
 - Laptop :thinking:!
 - Have ImageJ or [Fiji](https://fiji.sc/) version 1.53t or later installed on your computer (Help=>Update)
 - Read the [ImageJ macro language](https://imagej.net/ij/developer/macro/macros.html)
+- Download the full repository (in 'Code', there is an option 'Download ZIP')
 - Have an interest in automatizing your image analysis pipeline
 
 > [!NOTE]
@@ -34,24 +35,24 @@ The workflow is the following:
 
 Now, except for the **bold** line that requires human intervention, everything else can be done with a Macro.
 
-First is to open a new macro: ‘Plugins’ => ’New’ => ‘Macro’. Be sure to check that the language is ImageJ Macro in the tab ‘Language’. Pushing the ‘Run’ button, located at the bottom, will execute the Macro.
+First is to open a new macro: ‘Plugins’ => ’New’ => ‘Macro’. Be sure to check that the language is ImageJ Macro in the tab ‘Language’. Pushing the ‘Run’ button at the bottom will execute the Macro.
 
-Nearly all functions in ImageJ can be found with the ‘record’, found in ‘Plugins’ => ‘Macros’ => ‘Record’.
+Ney all functions in ImageJ can be found with the ‘record’, found in ‘Plugins’ => ‘Macros’ => ‘Record’.
 ImageJ will start to record nearly all actions that you are doing, like applying a different LUT to an image. The easiest way is then to open an image and do what we want the Macro to do (image 1). The double slash ‘//’ indicates a comment, very useful for indicating what a piece of code is doing.
 
-![Image 1. Macro recorder](Image1.png)
+![Image 1. Macro recorder](https://github.com/leclercsimon74/ImageJ-Macro-Workshop-Level-1/blob/main/Image1.png)
 
 We can see :eye: a couple of trouble here.
 The first one is this makePolygon. We want that to be manually done by the user.
 Then we need the program to know the amount of images, their location, their names…
-Harcoding, a.k.a. entering in a list/array all this information by yourself is not a solution. But ImageJ has you covered, with the two most important functions needed:
-dir = getDirectory()
-list = getFileList(dir)
+Harcoding, a.k.a. entering in a list/array all this information by yourself is not a solution. But ImageJ has you covered, with the two most important functions needed, getDirectory and getFileList.
 You can find more information on them at [Built-in Macro Functions](https://imagej.net/ij/developer/macro/functions.html).
-The first create a dialog window for the user to select the directory, call ‘dir’ here. This is in reality, a string/text.
+The first create a dialog window for the user to select the directory, call ‘diwayshere. This is in reality, a string/text.
 The second will list all files in the directory that have been selected and will contain a list of file names. A list, or array in ImageJ, is a specific data structure that has an extra function on it.
 After that, we need to create a loop to pass through all the items in the list. A for loop is perfect in this scenario:
 ```Java
+dir = getDirectory()
+list = getFileList(dir)
 for (i=0; i<list.length; i++){
 //code here
 }
@@ -107,7 +108,7 @@ Using a similar approach, make a montage image of the IF images in the folder by
 
 See :eye: an example image below.
 
-![Image 2. Example image created by Macro 2.](Image2.png)
+![Image 2. Example image created by Macro 2.](https://github.com/leclercsimon74/ImageJ-Macro-Workshop-Level-1/blob/main/Image2.jpg)
 
 The challenge is that the macro recorder does not record your direct action, such as changing the channel or z plane. There is some that it does record if you pass through the menu, but one way is to search (Ctrl+F is your friend) in [Built-in Macro Functions](https://imagej.net/ij/developer/macro/functions.html).
 > [!TIP]
