@@ -16,7 +16,7 @@ Automatise as much as possible simple tasks, such as running a plugin on all ima
 - Laptop :thinking:!
 - Have ImageJ or [Fiji](https://fiji.sc/) version 1.53t or later installed on your computer (Help=>Update)
 - Read the [ImageJ macro language](https://imagej.net/ij/developer/macro/macros.html)
-- Download the full repository (in 'Code', there is an option 'Download ZIP')
+- Download the full repository, around 60 Mo (in 'Code', there is an option 'Download ZIP')
 - Have an interest in automatizing your image analysis pipeline
 
 > [!NOTE]
