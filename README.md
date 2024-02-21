@@ -51,8 +51,8 @@ The first create a dialog window for the user to select the directory, call ‘d
 The second will list all files in the directory that have been selected and will contain a list of file names. A list, or array in ImageJ, is a specific data structure that has an extra function on it.
 After that, we need to create a loop to pass through all the items in the list. A for loop is perfect in this scenario:
 ```Java
-dir = getDirectory()
-list = getFileList(dir)
+dir = getDirectory();
+list = getFileList(dir);
 for (i=0; i<list.length; i++){
 //code here
 }
@@ -66,6 +66,7 @@ Finally, back to the first trouble, the creation of the polygon. Since we want t
 
 Then the macro can proceed forward like in the macro record part:
 ```Java
+waitForUser();
 run("Clear Outside", "stack");
 run("Grays");
 run("Save");
