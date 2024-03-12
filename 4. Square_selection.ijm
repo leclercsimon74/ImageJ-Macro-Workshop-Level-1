@@ -1,6 +1,14 @@
 run("Close All"); //security
-result_dir = getDirectory("Choose directory to save to");
-to_process_dir = getDirectory("Choose directory to process");
+Dialog.create("Macro 4. Dialog options");
+Dialog.addDirectory("to process", getDir("cwd"));
+Dialog.addDirectory("to save", getDir("cwd"));
+Dialog.setLocation(0, 0);
+Dialog.show();
+to_process_dir = Dialog.getString();
+result_dir = Dialog.getString();
+
+//result_dir = getDirectory("Choose directory to save to");
+//to_process_dir = getDirectory("Choose directory to process");
 
 list = getFileList(to_process_dir);
 
@@ -24,6 +32,7 @@ function processImage(path, result_path){
 	
 	Dialog.createNonBlocking("Manual crop");
 	Dialog.addCheckbox("Pass this image", false); //if checked, will NOT process this image
+	Dialog.setLocation(0, 0);
 	Dialog.show();
 	continue_choice = Dialog.getCheckbox();
 
@@ -58,6 +67,10 @@ function processImage(path, result_path){
 		run("Close");
 	}
 }	
+
+
+
+
 
 
 
