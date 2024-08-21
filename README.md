@@ -188,5 +188,5 @@ Where the value from the channel and slice has been retrieved with the getPositi
 # Conclusion
 With these tools, you should be able to pre-process and visualize folders of images. The combination of the Macro recorder and [Built-in Macro Functions](https://imagej.net/ij/developer/macro/functions.html) should let you free to experiment with your images. This is the only way to learn!
 
-The next workshop, level 2, will focus on how to extract data from images, using both the Measure tools, the Analyze particles, and the famous ROI Manager, and saving these data to a CSV file.
+The next workshop, [level 2](https://github.com/leclercsimon74/ImageJ-Macro-Workshop-Level-2), will focus on how to extract data from images, using both the Measure tools, the Analyze particles, and the famous ROI Manager, and saving these data to a CSV file.
 
